@@ -1,0 +1,19 @@
+.theme {
+	width: 100%;
+	display: flex;
+	justify-content: end;
+}
+
+.theme-button {
+	width: 42px;
+	height: 42px;
+	background-size: cover;
+}
+
+.theme-button--dark {
+	background-image: url(../img/theme/theme-button--dark.png);
+}
+
+.theme-button--light {
+	background-image: url(../img/theme/theme-button--light.png);
+}

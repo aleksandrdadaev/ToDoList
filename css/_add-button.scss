@@ -1,0 +1,20 @@
+.add-button {
+	position: fixed;
+	bottom: 50px;
+	right: 15px;
+	width: 42px;
+	height: 42px;
+	border-radius: 50%;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.add-button--dark {
+	background-image: url(../img/add-button/add-button--dark.png);
+	background-color: #fff;
+}
+
+.add-button--light {
+	background-image: url(../img/add-button/add-button--light.png);
+	background-color: #000;
+}

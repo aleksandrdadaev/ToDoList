@@ -5,9 +5,35 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>ToDoList</title>
-		<link rel="stylesheet" href="style.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
 	</head>
 	<body>
+		<header class="theme">
+			<button class="theme-button theme-button--light"></button>
+		</header>
+		<section class="task-list">
+			<div class="task-day">
+				<h1 class="task-day__date">Today</h1>
+				<div class="tasks">
+					<div class="task">
+						<div class="task__marker"></div>
+						<div class="task__info">
+							<p class="task__text">
+								Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+							</p>
+							<span class="task__time">12:42 PM</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<button class="add-button add-button--light"></button>
 		<script src="main.js"></script>
 	</body>
 </html>

@@ -1,0 +1,10 @@
+@import 'reset';
+
+body {
+	font-family: 'Montserrat', sans-serif;
+	padding: 0 15px;
+}
+
+@import 'theme';
+@import 'add-button';
+@import 'tasks';
