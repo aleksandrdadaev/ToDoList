@@ -90,11 +90,13 @@ legend {
 }
 
 body {
+  background-color: #000;
   font-family: "Montserrat", sans-serif;
   padding: 0 15px;
 }
 
 .theme {
+  margin-top: 10px;
   width: 100%;
   display: flex;
   justify-content: end;
@@ -163,20 +165,36 @@ body {
 .task {
   display: flex;
   gap: 10px;
-  align-items: center;
 }
 
 .task__marker {
+  display: flex;
+  align-items: center;
+}
+
+.task__button {
   width: 20px;
   height: 20px;
-  flex-shrink: 0;
   border-radius: 5px;
   border: 1px solid rgba(0, 0, 0, 0.25);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.task__button--complete {
+  background-color: #000;
+  border: none;
+  background-image: url(../img/task-button/task-button--light.svg);
 }
 
 .task__info {
   font-weight: 500;
   color: #000;
+}
+
+.task__info--complete {
+  text-decoration: line-through;
+  opacity: 0.45;
 }
 
 .task__text {
@@ -188,4 +206,85 @@ body {
 .task__time {
   font-size: 13px;
   opacity: 0.6;
+}
+
+.task__marker-dot {
+  width: 10px;
+  height: 10px;
+  background-color: #000;
+  border-radius: 50%;
+}
+
+.add-task {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 95%;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 10px 10px 0 0;
+}
+
+.add-task__header {
+  position: relative;
+  margin-top: 15px;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.add-task__heading {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.add-task__close {
+  position: absolute;
+  left: 10px;
+  display: flex;
+  gap: 5px;
+  font-size: 17px;
+  font-weight: 400;
+}
+
+.add-task__body {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.add-task__title {
+  font-size: 34px;
+  font-weight: 700;
+}
+
+.add-task__stroke {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.add-task__span {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.add-task__text-input {
+  width: 100%;
+  height: 30px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  resize: none;
+  font-size: 13px;
+  font-weight: 400;
+  color: #000;
+}
+.add-task__text-input::-webkit-scrollbar {
+  width: 0;
+}
+.add-task__text-input:focus {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
 }/*# sourceMappingURL=style.css.map */
