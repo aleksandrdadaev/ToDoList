@@ -1,6 +1,7 @@
 @import 'reset';
 
 body {
+	background-color: #000;
 	font-family: 'Montserrat', sans-serif;
 	padding: 0 15px;
 }
@@ -8,3 +9,4 @@ body {
 @import 'theme';
 @import 'add-button';
 @import 'tasks';
+@import 'add-task';
