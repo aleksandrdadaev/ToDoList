@@ -90,7 +90,6 @@ legend {
 }
 
 body {
-  background-color: #000;
   font-family: "Montserrat", sans-serif;
   padding: 0 15px;
 }
@@ -125,6 +124,7 @@ body {
   border-radius: 50%;
   background-repeat: no-repeat;
   background-position: center;
+  z-index: 1;
 }
 
 .add-button--dark {
@@ -217,12 +217,13 @@ body {
 
 .add-task {
   position: fixed;
-  bottom: 0;
+  bottom: -100%;
   left: 0;
   height: 95%;
   width: 100%;
   background-color: #fff;
   border-radius: 10px 10px 0 0;
+  z-index: 2;
 }
 
 .add-task__header {

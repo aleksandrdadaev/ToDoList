@@ -1,11 +1,12 @@
 .add-task {
 	position: fixed;
-	bottom: 0;
+	bottom: -100%;
 	left: 0;
 	height: 95%;
 	width: 100%;
 	background-color: #fff;
 	border-radius: 10px 10px 0 0;
+	z-index: 2;
 }
 
 .add-task__header {
