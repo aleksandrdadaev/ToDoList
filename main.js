@@ -3,41 +3,40 @@ const taskList = [];
 taskList.push(
 	{
 		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-		date: '2022-12-05',
+		date: '2022-12-06',
 		time: '11:35',
 		complete: false,
-		id: Date.now(),
+		id: 1,
+	},
+	{
+		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+		date: '2022-12-05',
+		time: '12:35',
+		complete: true,
+		id: 2,
 	},
 	{
 		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
 		date: '2022-12-04',
-		time: '12:35',
-		complete: false,
-		id: Date.now(),
-	},
-	{
-		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-		date: '2022-12-03',
 		time: '12:43',
 		complete: false,
-		id: Date.now(),
-	},
-	{
-		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-		date: '2022-12-03',
-		time: '12:42',
-		complete: false,
-		id: Date.now(),
+		id: 3,
 	},
 	{
 		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
 		date: '2022-12-04',
+		time: '12:42',
+		complete: true,
+		id: 4,
+	},
+	{
+		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+		date: '2022-12-05',
 		time: '11:35',
 		complete: false,
 		id: Date.now(),
 	}
 );
-console.log(taskList);
 
 function getDateList() {
 	let dateList = taskList.map(item => item.date);
@@ -79,35 +78,63 @@ function renderTasks() {
 		tasks.classList.add('tasks');
 		let taskDayList = getTaskListOnDay(date);
 		taskDayList.forEach(task => {
-			let taskWrapper = document.createElement('div');
-			taskWrapper.classList.add('task');
-			let taskMarker = document.createElement('div');
-			taskMarker.classList.add('task__marker');
-			let taskMarkerDot = document.createElement('span');
-			taskMarkerDot.classList.add('task__marker-dot');
-			let taskInfo = document.createElement('div');
-			taskInfo.classList.add('task__info');
-			let taskText = document.createElement('p');
-			taskText.classList.add('task__text');
-			taskText.textContent = task.text;
-			let taskTime = document.createElement('span');
-			taskTime.classList.add('task__time');
-			taskTime.textContent = task.time;
-			taskMarker.append(taskMarkerDot);
-			taskInfo.append(taskText);
-			taskInfo.append(taskTime);
-			taskWrapper.append(taskMarker);
-			taskWrapper.append(taskInfo);
-			tasks.append(taskWrapper);
-			taskDay.append(tasks);
+			tasks.append(createTask(task));
 		});
-		console.log(date);
-		console.log(taskDayList);
+		taskDay.append(tasks);
 	});
 }
 
+function createTask(task) {
+	let taskWrapper = document.createElement('div');
+	taskWrapper.classList.add('task');
+	taskWrapper.dataset.id = task.id;
+	let taskMarker = document.createElement('div');
+	taskMarker.classList.add('task__marker');
+	let taskInfo = document.createElement('div');
+	taskInfo.classList.add('task__info');
+	if (dateCheck(task) && task.complete)
+		taskInfo.classList.add('task__info--complete');
+	let taskText = document.createElement('p');
+	taskText.classList.add('task__text');
+	taskText.textContent = task.text;
+	let taskTime = document.createElement('span');
+	taskTime.classList.add('task__time');
+	taskTime.textContent = task.time;
+	taskMarker.append(createTaskMarker(task));
+	taskInfo.append(taskText);
+	taskInfo.append(taskTime);
+	taskWrapper.append(taskMarker);
+	taskWrapper.append(taskInfo);
+	return taskWrapper;
+}
+
+function createTaskMarker(task) {
+	if (dateCheck(task)) {
+		let taskMarkerButton = document.createElement('button');
+		taskMarkerButton.classList.add('task__button');
+		if (task.complete) taskMarkerButton.classList.add('task__button--complete');
+		taskMarkerButton.dataset.id = task.id;
+		return taskMarkerButton;
+	} else {
+		let taskMarkerDot = document.createElement('span');
+		taskMarkerDot.classList.add('task__marker-dot');
+		return taskMarkerDot;
+	}
+}
+
+function dateCheck(task) {
+	let dateNow = new Date();
+	dateNow.setHours(7, 0, 0, 0);
+	let dateTask = new Date(task.date);
+	if (dateNow.getTime() == dateTask.getTime()) {
+		return true;
+	} else return false;
+}
+
 function getTaskListOnDay(taskDay) {
-	return taskList.filter(task => task.date == taskDay);
+	return taskList
+		.filter(task => task.date == taskDay)
+		.sort((a, b) => (a.time > b.time ? 1 : -1));
 }
 
 renderDays();
