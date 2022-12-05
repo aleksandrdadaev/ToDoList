@@ -224,6 +224,7 @@ body {
   background-color: #fff;
   border-radius: 10px 10px 0 0;
   z-index: 2;
+  transition: all 1s ease;
 }
 
 .add-task__header {
