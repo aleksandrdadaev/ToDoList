@@ -3,35 +3,35 @@ const taskList = [];
 taskList.push(
 	{
 		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-		date: '2022-12-06',
+		date: '2022-12-07',
 		time: '11:35',
 		complete: false,
 		id: 1,
 	},
 	{
 		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-		date: '2022-12-05',
+		date: '2022-12-06',
 		time: '12:35',
 		complete: true,
 		id: 2,
 	},
 	{
 		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-		date: '2022-12-04',
+		date: '2022-12-05',
 		time: '12:43',
 		complete: false,
 		id: 3,
 	},
 	{
 		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-		date: '2022-12-04',
+		date: '2022-12-05',
 		time: '12:42',
 		complete: true,
 		id: 4,
 	},
 	{
 		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-		date: '2022-12-05',
+		date: '2022-12-06',
 		time: '11:35',
 		complete: false,
 		id: Date.now(),
@@ -114,6 +114,7 @@ function createTaskMarker(task) {
 		taskMarkerButton.classList.add('task__button');
 		if (task.complete) taskMarkerButton.classList.add('task__button--complete');
 		taskMarkerButton.dataset.id = task.id;
+		taskMarkerButton.addEventListener('click', taskClick);
 		return taskMarkerButton;
 	} else {
 		let taskMarkerDot = document.createElement('span');
@@ -137,5 +138,30 @@ function getTaskListOnDay(taskDay) {
 		.sort((a, b) => (a.time > b.time ? 1 : -1));
 }
 
-renderDays();
-renderTasks();
+function clearPastTasks() {
+	let dateNow = new Date();
+	dateNow.setHours(7, 0, 0, 0);
+	taskList.forEach((task, index) => {
+		let dateTask = new Date(task.date);
+		if (dateNow.getTime() > dateTask.getTime()) {
+			taskList.splice(index, 1);
+		}
+	});
+}
+
+function taskClick() {
+	this.classList.toggle('task__button--complete');
+	this.parentElement.nextElementSibling.classList.toggle(
+		'task__info--complete'
+	);
+	let task = taskList.find(task => task.id == this.dataset.id);
+	task.complete = !task.complete;
+}
+
+function render() {
+	clearPastTasks();
+	renderDays();
+	renderTasks();
+}
+
+render();
