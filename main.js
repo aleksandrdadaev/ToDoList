@@ -165,3 +165,17 @@ function render() {
 }
 
 render();
+
+const openButton = document.querySelector('#open-button');
+const closeButton = document.querySelector('#close-button');
+const addSection = document.querySelector('#add-section');
+openButton.addEventListener('click', openAddSection);
+closeButton.addEventListener('click', closeAddSection);
+
+function openAddSection() {
+	addSection.style.bottom = 0;
+}
+
+function closeAddSection() {
+	addSection.style.bottom = '-100%';
+}
