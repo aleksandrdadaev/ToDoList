@@ -217,7 +217,7 @@ body {
 
 .add-task {
   position: fixed;
-  bottom: -100%;
+  bottom: 0;
   left: 0;
   height: 95%;
   width: 100%;
@@ -296,7 +296,6 @@ body {
   border-radius: 6px;
   padding: 0 8px;
   display: flex;
-  align-items: center;
   gap: 5px;
   font-size: 22px;
   font-weight: 400;
@@ -308,6 +307,20 @@ body {
 .input-time__time {
   display: flex;
   flex-direction: column;
+  transform: translateY(11px);
+  transition: transform 0.3s ease;
+}
+
+.input-time__separator {
+  align-self: center;
+}
+
+.input-time__time-value {
+  opacity: 0.5;
+}
+
+.input-time__time-value--active {
+  opacity: 1;
 }
 
 .add-task__add-button {
