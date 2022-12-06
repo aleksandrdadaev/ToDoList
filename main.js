@@ -1,37 +1,45 @@
-const taskList = [];
+let taskList = [];
 
 taskList.push(
 	{
 		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-		date: '2022-12-07',
+		date: '2022-12-08',
 		time: '11:35',
 		complete: false,
 		id: 1,
 	},
 	{
 		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-		date: '2022-12-06',
+		date: '2022-12-07',
 		time: '12:35',
 		complete: true,
 		id: 2,
 	},
 	{
 		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-		date: '2022-12-05',
+		date: '2022-12-06',
 		time: '12:43',
 		complete: false,
 		id: 3,
 	},
 	{
 		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-		date: '2022-12-05',
+		date: '2022-12-06',
+		time: '12:43',
+		complete: false,
+		id: 33,
+	},
+
+	{
+		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+		date: '2022-12-06',
 		time: '12:42',
 		complete: true,
 		id: 4,
 	},
 	{
 		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-		date: '2022-12-06',
+		date: '2022-12-07',
 		time: '11:35',
 		complete: false,
 		id: Date.now(),
@@ -141,12 +149,9 @@ function getTaskListOnDay(taskDay) {
 function clearPastTasks() {
 	let dateNow = new Date();
 	dateNow.setHours(7, 0, 0, 0);
-	taskList.forEach((task, index) => {
-		let dateTask = new Date(task.date);
-		if (dateNow.getTime() > dateTask.getTime()) {
-			taskList.splice(index, 1);
-		}
-	});
+	taskList = taskList.filter(
+		task => dateNow.getTime() <= new Date(task.date).getTime()
+	);
 }
 
 function taskClick() {
@@ -179,3 +184,20 @@ function openAddSection() {
 function closeAddSection() {
 	addSection.style.bottom = '-100%';
 }
+
+let hours = document.querySelector('#hours');
+let minutes = document.querySelector('#minutes');
+
+function addTimeItems(time, amount) {
+	for (let i = 0; i < amount; i++) {
+		let timeValue = `${i}`;
+		if (timeValue.length < 2) timeValue = '0' + timeValue;
+		let timeItem = document.createElement('span');
+		timeItem.textContent = timeValue;
+		timeItem.classList.add('input-time__time-value');
+		time.append(timeItem);
+	}
+}
+
+addTimeItems(hours, 24);
+addTimeItems(minutes, 60);
