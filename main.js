@@ -3,28 +3,28 @@ let taskList = [];
 taskList.push(
 	{
 		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-		date: '2022-12-08',
+		date: '2022-12-10',
 		time: '11:35',
 		complete: false,
 		id: 1,
 	},
 	{
 		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-		date: '2022-12-07',
+		date: '2022-12-09',
 		time: '12:35',
 		complete: true,
 		id: 2,
 	},
 	{
 		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-		date: '2022-12-06',
+		date: '2022-12-08',
 		time: '12:43',
 		complete: false,
 		id: 3,
 	},
 	{
 		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-		date: '2022-12-06',
+		date: '2022-12-08',
 		time: '12:43',
 		complete: false,
 		id: 33,
@@ -32,14 +32,14 @@ taskList.push(
 
 	{
 		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-		date: '2022-12-06',
+		date: '2022-12-08',
 		time: '12:42',
 		complete: true,
 		id: 4,
 	},
 	{
 		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-		date: '2022-12-07',
+		date: '2022-12-09',
 		time: '11:35',
 		complete: false,
 		id: Date.now(),
@@ -179,6 +179,9 @@ closeButton.addEventListener('click', closeAddSection);
 
 function openAddSection() {
 	addSection.style.bottom = 0;
+
+	timeSlider('hours');
+	timeSlider('minutes');
 }
 
 function closeAddSection() {
