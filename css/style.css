@@ -217,7 +217,7 @@ body {
 
 .add-task {
   position: fixed;
-  bottom: 0;
+  bottom: -100%;
   left: 0;
   height: 95%;
   width: 100%;
@@ -292,7 +292,7 @@ body {
 }
 
 .input-time {
-  height: 36px;
+  height: 44px;
   border-radius: 6px;
   padding: 0 8px;
   display: flex;
@@ -308,7 +308,7 @@ body {
   display: flex;
   flex-direction: column;
   transform: translateY(11px);
-  transition: transform 0.3s ease;
+  transition: transform 0.5s ease;
 }
 
 .input-time__separator {
