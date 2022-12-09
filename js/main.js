@@ -1,50 +1,18 @@
+document.addEventListener('DOMContentLoaded', loadPage);
+window.addEventListener('unload', closePage);
 let taskList = [];
 
-taskList.push(
-	{
-		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-		date: '2022-12-11',
-		time: '11:35',
-		complete: false,
-		id: 1,
-	},
-	{
-		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-		date: '2022-12-10',
-		time: '12:35',
-		complete: true,
-		id: 2,
-	},
-	{
-		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-		date: '2022-12-09',
-		time: '12:43',
-		complete: false,
-		id: 3,
-	},
-	{
-		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-		date: '2022-12-09',
-		time: '12:43',
-		complete: false,
-		id: 33,
-	},
-
-	{
-		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-		date: '2022-12-09',
-		time: '12:42',
-		complete: true,
-		id: 4,
-	},
-	{
-		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-		date: '2022-12-10',
-		time: '11:35',
-		complete: false,
-		id: Date.now(),
+function loadPage() {
+	if (localStorage.getItem('taskList')) {
+		taskList = localStorage.getItem('taskList');
+		taskList = JSON.parse(taskList);
 	}
-);
+	render();
+}
+
+function closePage() {
+	localStorage.setItem('taskList', JSON.stringify(taskList));
+}
 
 function getDateList() {
 	let dateList = taskList.map(item => item.date);
@@ -169,8 +137,6 @@ function render() {
 	renderDays();
 	renderTasks();
 }
-
-render();
 
 const openButton = document.querySelector('#open-button');
 const closeButton = document.querySelector('#close-button');
