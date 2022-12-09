@@ -163,8 +163,10 @@ body {
 }
 
 .task {
+  position: relative;
   display: flex;
   gap: 10px;
+  padding-right: 20px;
 }
 
 .task__marker {
@@ -213,6 +215,15 @@ body {
   height: 10px;
   background-color: #000;
   border-radius: 50%;
+}
+
+.task__delete {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 16px;
+  height: 16px;
+  background-image: url(../img/delete-task/delete-task.png);
 }
 
 .add-task {

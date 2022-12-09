@@ -69,6 +69,10 @@ function createTask(task) {
 	taskMarker.classList.add('task__marker');
 	let taskInfo = document.createElement('div');
 	taskInfo.classList.add('task__info');
+	let taskDelete = document.createElement('button');
+	taskDelete.classList.add('task__delete');
+	taskDelete.dataset.id = task.id;
+	taskDelete.addEventListener('click', deleteTask);
 	if (dateCheck(task) && task.complete)
 		taskInfo.classList.add('task__info--complete');
 	let taskText = document.createElement('p');
@@ -82,6 +86,7 @@ function createTask(task) {
 	taskInfo.append(taskTime);
 	taskWrapper.append(taskMarker);
 	taskWrapper.append(taskInfo);
+	taskWrapper.append(taskDelete);
 	return taskWrapper;
 }
 
@@ -98,6 +103,12 @@ function createTaskMarker(task) {
 		taskMarkerDot.classList.add('task__marker-dot');
 		return taskMarkerDot;
 	}
+}
+
+function deleteTask(e) {
+	let deleteIndex = taskList.findIndex(item => item.id == e.target.dataset.id);
+	taskList.splice(deleteIndex, 1);
+	render();
 }
 
 function dateCheck(task) {
