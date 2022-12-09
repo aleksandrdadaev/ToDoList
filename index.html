@@ -35,6 +35,7 @@
 						type="text"
 						class="add-task__text-input"
 						placeholder="Текст задачи"
+						id="text"
 					></textarea>
 				</div>
 				<div class="add-task__stroke">
@@ -47,12 +48,13 @@
 				</div>
 				<div class="add-task__stroke">
 					<span class="add-task__span">Day</span>
-					<input type="date" />
+					<input type="date" id="date" />
 				</div>
-				<button class="add-task__add-button">Done</button>
+				<button class="add-task__add-button" id="addTaskButton">Done</button>
 			</div>
 		</section>
-		<script src="main.js"></script>
-		<script src="time-slider.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/time-slider.js"></script>
+		<script src="js/add-task.js"></script>
 	</body>
 </html>
