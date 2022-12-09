@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', loadPage);
+window.addEventListener('DOMContentLoaded', loadPage);
 window.addEventListener('unload', closePage);
 let taskList = [];
 
