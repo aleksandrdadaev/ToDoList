@@ -3,28 +3,28 @@ let taskList = [];
 taskList.push(
 	{
 		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-		date: '2022-12-10',
+		date: '2022-12-11',
 		time: '11:35',
 		complete: false,
 		id: 1,
 	},
 	{
 		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-		date: '2022-12-09',
+		date: '2022-12-10',
 		time: '12:35',
 		complete: true,
 		id: 2,
 	},
 	{
 		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-		date: '2022-12-08',
+		date: '2022-12-09',
 		time: '12:43',
 		complete: false,
 		id: 3,
 	},
 	{
 		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-		date: '2022-12-08',
+		date: '2022-12-09',
 		time: '12:43',
 		complete: false,
 		id: 33,
@@ -32,14 +32,14 @@ taskList.push(
 
 	{
 		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-		date: '2022-12-08',
+		date: '2022-12-09',
 		time: '12:42',
 		complete: true,
 		id: 4,
 	},
 	{
 		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-		date: '2022-12-09',
+		date: '2022-12-10',
 		time: '11:35',
 		complete: false,
 		id: Date.now(),
@@ -55,6 +55,7 @@ function getDateList() {
 
 function renderDays() {
 	let tasksList = document.querySelector('#task-list');
+	Array.from(tasksList.children).forEach(item => item.remove());
 	getDateList().forEach(date => {
 		let taskDay = document.createElement('div');
 		taskDay.classList.add('task-day');
@@ -182,10 +183,23 @@ function openAddSection() {
 
 	timeSlider('hours');
 	timeSlider('minutes');
+	setMinDate();
+	textInput.value = '';
+}
+
+function setMinDate() {
+	let yearNow = new Date().getFullYear();
+	let monthNow = new Date().getMonth() + 1;
+	let dayNow = new Date().getDate();
+	if (String(dayNow).length < 2) dayNow = '0' + String(dayNow);
+	dateInput.setAttribute('min', `${yearNow}-${monthNow}-${dayNow}`);
+	dateInput.value = `${yearNow}-${monthNow}-${dayNow}`;
 }
 
 function closeAddSection() {
 	addSection.style.bottom = '-100%';
+	if (addTaskButton.childNodes.length > 1)
+		document.querySelector('#error').remove();
 }
 
 let hours = document.querySelector('#hours');

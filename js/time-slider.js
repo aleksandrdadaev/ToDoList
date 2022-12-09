@@ -41,7 +41,8 @@ function timeSlider(id) {
 
 	function moveSlider() {
 		slider.style.transform = `translateY(${transformSlider}px)`;
-		slider.dataset.value = activeIndex;
+		slider.dataset.value =
+			String(activeIndex).length > 1 ? activeIndex : '0' + String(activeIndex);
 	}
 
 	function moveSlides() {
