@@ -1,50 +1,18 @@
+window.addEventListener('DOMContentLoaded', loadPage);
+window.addEventListener('unload', closePage);
 let taskList = [];
 
-taskList.push(
-	{
-		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-		date: '2022-12-11',
-		time: '11:35',
-		complete: false,
-		id: 1,
-	},
-	{
-		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-		date: '2022-12-10',
-		time: '12:35',
-		complete: true,
-		id: 2,
-	},
-	{
-		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-		date: '2022-12-09',
-		time: '12:43',
-		complete: false,
-		id: 3,
-	},
-	{
-		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-		date: '2022-12-09',
-		time: '12:43',
-		complete: false,
-		id: 33,
-	},
-
-	{
-		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-		date: '2022-12-09',
-		time: '12:42',
-		complete: true,
-		id: 4,
-	},
-	{
-		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-		date: '2022-12-10',
-		time: '11:35',
-		complete: false,
-		id: Date.now(),
+function loadPage() {
+	if (localStorage.getItem('taskList')) {
+		taskList = localStorage.getItem('taskList');
+		taskList = JSON.parse(taskList);
 	}
-);
+	render();
+}
+
+function closePage() {
+	localStorage.setItem('taskList', JSON.stringify(taskList));
+}
 
 function getDateList() {
 	let dateList = taskList.map(item => item.date);
@@ -101,6 +69,10 @@ function createTask(task) {
 	taskMarker.classList.add('task__marker');
 	let taskInfo = document.createElement('div');
 	taskInfo.classList.add('task__info');
+	let taskDelete = document.createElement('button');
+	taskDelete.classList.add('task__delete');
+	taskDelete.dataset.id = task.id;
+	taskDelete.addEventListener('click', deleteTask);
 	if (dateCheck(task) && task.complete)
 		taskInfo.classList.add('task__info--complete');
 	let taskText = document.createElement('p');
@@ -114,6 +86,7 @@ function createTask(task) {
 	taskInfo.append(taskTime);
 	taskWrapper.append(taskMarker);
 	taskWrapper.append(taskInfo);
+	taskWrapper.append(taskDelete);
 	return taskWrapper;
 }
 
@@ -130,6 +103,12 @@ function createTaskMarker(task) {
 		taskMarkerDot.classList.add('task__marker-dot');
 		return taskMarkerDot;
 	}
+}
+
+function deleteTask(e) {
+	let deleteIndex = taskList.findIndex(item => item.id == e.target.dataset.id);
+	taskList.splice(deleteIndex, 1);
+	render();
 }
 
 function dateCheck(task) {
@@ -169,8 +148,6 @@ function render() {
 	renderDays();
 	renderTasks();
 }
-
-render();
 
 const openButton = document.querySelector('#open-button');
 const closeButton = document.querySelector('#close-button');
