@@ -144,6 +144,15 @@ function taskClick() {
 }
 
 function render() {
+	let tasksList = document.querySelector('#task-list');
+	tasksList.innerHTML = '';
+	if (taskList.length == 0) {
+		let epmpty = document.createElement('p');
+		epmpty.textContent = 'Список задач пуст.';
+		epmpty.classList.add('task-list__empty');
+		tasksList.append(epmpty);
+		return;
+	}
 	clearPastTasks();
 	renderDays();
 	renderTasks();
